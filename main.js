@@ -1,3 +1,4 @@
+//Date time library
 
 // api url
 const api_url = 
@@ -8,12 +9,19 @@ async function getapi(url,table) {
     const response = await fetch(url);
     // Storing data in form of JSON
     var data = await response.json();
+    //console.log(data.items[0].timestamp)
     show(data,table);
 }
 // Function to define innerHTML for HTML table
 function show(data,table) {
+    var readings = data.items[0].readings
+    var timestamp = data.items[0].timestamp
     const tableHead =table.querySelector("thead");
     const tableBody = table.querySelector("tbody");
+    console.log(timestamp)
+    var date= new Date(timestamp);
+    //const dateFormatted = format(now, "EEEE',' MMMM d',' ha")
+    document.getElementById("table_header").innerHTML="Last updated "+date
     tableHead.innerHTML = "<tr></tr>";
     tableBody.innerHTML ="";
     let tablehtml = 
@@ -29,7 +37,7 @@ function show(data,table) {
 
     tableHead.innerHTML = tablehtml;
 // Loop to access all rows 
-var readings = data.items[0].readings
+
 console.log(readings)
 for (let r in readings) {
     tablehtml = `<tr> 
