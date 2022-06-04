@@ -18,9 +18,9 @@ function show(data,table) {
     var timestamp = data.items[0].timestamp
     const tableHead =table.querySelector("thead");
     const tableBody = table.querySelector("tbody");
-    console.log(timestamp)
     var date= new Date(timestamp);
-    //const dateFormatted = format(now, "EEEE',' MMMM d',' ha")
+    date = moment(date).format('MMMM Do YYYY, h:mm');
+    console.log(date)
     document.getElementById("table_header").innerHTML="Last updated "+date
     tableHead.innerHTML = "<tr></tr>";
     tableBody.innerHTML ="";
